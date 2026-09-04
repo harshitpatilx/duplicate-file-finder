@@ -37,15 +37,18 @@ if directory.exists():
 
     # Recursively iterate through all files and directories.
     for item in directory.rglob("*"):
+
         # Process only files, directories ignored
         if item.is_file():
             item_size = item.stat().st_size
+
             # Group files that have same size
             files_dict.setdefault(item_size, []).append(item)
 
     # Dictionary used to group potential duplicates by their hash.
     hashes_dict = {}
-    # Lists to handle some special cases
+    
+    # Lists to handle some special cases.
     not_hashed = []
     files_changed = []
 
