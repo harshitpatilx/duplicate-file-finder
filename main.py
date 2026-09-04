@@ -20,6 +20,7 @@ def calculate_hash(file_path, file_size):
                 hash_obj.update(chunk)
 
         current_size = Path(file_path).stat().st_size
+
         if current_size == file_size:
             return hash_obj.hexdigest()
         else:
@@ -33,7 +34,6 @@ def calculate_hash(file_path, file_size):
 if directory.exists():
     # Dictionary used to group files of same size.
     files_dict = {}
-    
 
     # Recursively iterate through all files and directories.
     for item in directory.rglob("*"):
@@ -45,6 +45,7 @@ if directory.exists():
 
     # Dictionary used to group potential duplicates by their hash.
     hashes_dict = {}
+    # Lists to handle some special cases
     not_hashed = []
     files_changed = []
 
